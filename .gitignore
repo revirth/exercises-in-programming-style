@@ -9,7 +9,8 @@
 *.class
 
 
-# Created by https://www.gitignore.io/api/csharp
+
+# Created by https://www.gitignore.io/api/csharp,visualstudiocode
 
 ### Csharp ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -303,4 +304,12 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
-# End of https://www.gitignore.io/api/csharp
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+
+# End of https://www.gitignore.io/api/csharp,visualstudiocode
