@@ -70,7 +70,7 @@ def sort():
     Sorts word_freqs by frequency
     """
     global word_freqs
-    word_freqs.sort(key = lambda x: x[1])
+    word_freqs.sort(key = lambda x: x[1], reverse=True)
 
 
 #
@@ -85,4 +85,3 @@ sort()
 
 for tf in word_freqs[0:25]:
     print (tf[0], ' - ', tf[1])
-
