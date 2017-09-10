@@ -70,13 +70,13 @@ def sort():
     Sorts word_freqs by frequency
     """
     global word_freqs
-    word_freqs.sort(lambda x, y: cmp(y[1], x[1]))
+    word_freqs.sort(key = lambda x: x[1])
 
 
 #
 # The main function
 #
-read_file(sys.argv[1])
+read_file('../pride-and-prejudice.txt')
 filter_chars_and_normalize()
 scan()
 remove_stop_words()
@@ -84,5 +84,5 @@ frequencies()
 sort()
 
 for tf in word_freqs[0:25]:
-    print tf[0], ' - ', tf[1]
+    print (tf[0], ' - ', tf[1])
 

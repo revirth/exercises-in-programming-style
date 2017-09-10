@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import sys, re, operator, string
+from functools import reduce
 
 #
 # Functions for map reduce
@@ -10,7 +11,7 @@ def partition(data_str, nlines):
     into chunks of nlines.
     """
     lines = data_str.split('\n')
-    for i in xrange(0, len(lines), nlines):
+    for i in range(0, len(lines), nlines):
         yield '\n'.join(lines[i:i+nlines])
 
 def split_words(data_str):
@@ -49,7 +50,7 @@ def count_words(pairs_list_1, pairs_list_2):
             mapping[p[0]] += p[1]
         else:
             mapping[p[0]] = 1
-    return mapping.items()
+    return list(mapping.items())
 
 #
 # Auxiliary functions
@@ -65,10 +66,10 @@ def sort(word_freq):
 #
 # The main function
 #
-splits = map(split_words, partition(read_file(sys.argv[1]), 200))
+splits = list(map(split_words, partition(read_file('../pride-and-prejudice.txt'), 200)))
 splits.insert(0, []) # Normalize input to reduce
 word_freqs = sort(reduce(count_words, splits))
 
 for (w, c) in word_freqs[0:25]:
-    print w, ' - ', c
+    print (w, ' - ', c)
 

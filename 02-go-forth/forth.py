@@ -56,8 +56,8 @@ def rSwap(cod,p) : a=ds.pop(); b=ds.pop(); ds.append(a); ds.append(b)
 def rDup (cod,p) : ds.append(ds[-1])
 def rDrop(cod,p) : ds.pop()
 def rOver(cod,p) : ds.append(ds[-2])
-def rDump(cod,p) : print "ds = ", ds
-def rDot (cod,p) : print ds.pop()
+def rDump(cod,p) : print ("ds = ", ds)
+def rDot (cod,p) : print (ds.pop())
 def rJmp (cod,p) : return cod[p]
 def rJnz (cod,p) : return (cod[p],p+1)[ds.pop()]
 def rJz  (cod,p) : return (p+1,cod[p])[ds.pop()==0]

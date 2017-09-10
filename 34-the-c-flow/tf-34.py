@@ -20,7 +20,7 @@ def extract_words(path_to_file):
             with open(path_to_file) as f:
                 str_data = f.read()
         except IOError as e:
-            print "I/O error({0}) when opening {1}: {2}".format(e.errno, path_to_file, e.strerror)
+            print ("I/O error({0}) when opening {1}: {2}".format(e.errno, path_to_file, e.strerror))
             fail = True
     
         if not fail:
@@ -31,7 +31,7 @@ def extract_words(path_to_file):
                 with open('../stop_words.txt') as f:
                     stop_words = f.read().split(',')
             except IOError as e:
-                print "I/O error({0}) when opening ../stops_words.txt: {1}".format(e.errno, e.strerror)
+                print ("I/O error({0}) when opening ../stops_words.txt: {1}".format(e.errno, e.strerror))
                 fail = True
 
             if not fail:
@@ -44,7 +44,7 @@ def frequencies(word_list):
     Takes a list of words and returns a dictionary associating
     words with frequencies of occurrence
     """
-    if type(word_list) is list and word_list <> []:
+    if type(word_list) is list and word_list != []:
         word_freqs = {}
         for w in word_list:
             if w in word_freqs:
@@ -61,17 +61,17 @@ def sort(word_freq):
     and returns a list of pairs where the entries are
     sorted by frequency 
     """
-    if type(word_freq) is dict and word_freq <> {}:
-        return sorted(word_freq.iteritems(), key=operator.itemgetter(1), reverse=True)
+    if type(word_freq) is dict and word_freq != {}:
+        return sorted(word_freq.items(), key=operator.itemgetter(1), reverse=True)
     else:
         return []
 
 #
 # The main function
 #
-filename = sys.argv[1] if len(sys.argv) > 1 else "../input.txt"
+filename = '../pride-and-prejudice.txt'
 word_freqs = sort(frequencies(extract_words(filename)))
 
 for tf in word_freqs[0:25]:
-    print tf[0], ' - ', tf[1]
+    print (tf[0], ' - ', tf[1])
 

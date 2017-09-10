@@ -35,14 +35,14 @@ def count_and_sort(filename):
     for w in non_stop_words(filename):
         freqs[w] = 1 if w not in freqs else freqs[w]+1
         if i % 5000 == 0:
-            yield sorted(freqs.iteritems(), key=operator.itemgetter(1), reverse=True)
+            yield sorted(freqs.items(), key=operator.itemgetter(1), reverse=True)
         i = i+1
-    yield sorted(freqs.iteritems(), key=operator.itemgetter(1), reverse=True)
+    yield sorted(freqs.items(), key=operator.itemgetter(1), reverse=True)
 #
 # The main function
 #
-for word_freqs in count_and_sort(sys.argv[1]):
-    print "-----------------------------"
+for word_freqs in count_and_sort('../pride-and-prejudice.txt'):
+    print ("-----------------------------")
     for (w, c) in word_freqs[0:25]:
-        print w, ' - ', c
+        print (w, ' - ', c)
 

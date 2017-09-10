@@ -9,7 +9,7 @@ with open('../stop_words.txt') as f:
 stop_words.extend(list(string.ascii_lowercase))
 
 # iterate through the file one line at a time 
-for line in open(sys.argv[1]):
+for line in open('../pride-and-prejudice.txt'):
     start_char = None
     i = 0
     for c in line:
@@ -47,5 +47,5 @@ for line in open(sys.argv[1]):
         i += 1
 
 for tf in word_freqs[0:25]:
-    print tf[0], ' - ', tf[1]
+    print (tf[0], ' - ', tf[1])
 

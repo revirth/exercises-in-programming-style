@@ -19,7 +19,7 @@ class WordFrequenciesModel:
             for obs in self._observers:
                 obs.render()
         except IOError:
-            print "File not found"
+            print ("File not found")
             self.freqs = {}
 
 class WordFrequenciesView:
@@ -28,18 +28,18 @@ class WordFrequenciesView:
         model.register(self)
 
     def render(self):
-        sorted_freqs = sorted(self._model.freqs.iteritems(), key=operator.itemgetter(1), reverse=True)
+        sorted_freqs = sorted(self._model.freqs.items(), key=operator.itemgetter(1), reverse=True)
         for (w, c) in sorted_freqs[:25]:
-            print w, '-', c
+            print (w, '-', c)
 
 class WordFrequencyController:
     def __init__(self, model, view):
         self._model, self._view = model, view
 
     def run(self):
-        self._model.update(sys.argv[1])
+        self._model.update('../pride-and-prejudice.txt')
         while True:
-            print "Next file: " 
+            print ("Next file: ") 
             sys.stdout.flush() 
             filename = sys.stdin.readline().strip()
             self._model.update(filename)

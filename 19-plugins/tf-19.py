@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-import sys, ConfigParser, imp
+import sys, configparser, imp
 
 def load_plugins():
-    config = ConfigParser.ConfigParser()
+    config = configparser.ConfigParser()
     config.read("config.ini")
     words_plugin = config.get("Plugins", "words")
     frequencies_plugin = config.get("Plugins", "frequencies")
@@ -11,8 +11,8 @@ def load_plugins():
     tffreqs = imp.load_compiled('tffreqs', frequencies_plugin)
 
 load_plugins()
-word_freqs = tffreqs.top25(tfwords.extract_words(sys.argv[1]))
+word_freqs = tffreqs.top25(tfwords.extract_words('../pride-and-prejudice.txt'))
 
 for (w, c) in word_freqs:
-    print w, ' - ', c
+    print (w, ' - ', c)
 

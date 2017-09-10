@@ -87,9 +87,9 @@ class WordFrequencyCounter:
             self._word_freqs[word] = 1
 
     def __print_freqs(self):
-        word_freqs = sorted(self._word_freqs.iteritems(), key=operator.itemgetter(1), reverse=True)
+        word_freqs = sorted(self._word_freqs.items(), key=operator.itemgetter(1), reverse=True)
         for (w, c) in word_freqs[0:25]:
-            print w, ' - ', c
+            print (w, ' - ', c)
 
 #
 # The main function
@@ -98,5 +98,5 @@ wfapp = WordFrequencyFramework()
 stop_word_filter = StopWordFilter(wfapp)
 data_storage = DataStorage(wfapp, stop_word_filter)
 word_freq_counter = WordFrequencyCounter(wfapp, data_storage)
-wfapp.run(sys.argv[1])
+wfapp.run('../pride-and-prejudice.txt')
 

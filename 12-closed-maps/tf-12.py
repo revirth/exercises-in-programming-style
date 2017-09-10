@@ -34,10 +34,10 @@ stop_words_obj = {
 word_freqs_obj = {
     'freqs' : {},
     'increment_count' : lambda w : increment_count(word_freqs_obj, w),
-    'sorted' : lambda : sorted(word_freqs_obj['freqs'].iteritems(), key=operator.itemgetter(1), reverse=True)
+    'sorted' : lambda : sorted(word_freqs_obj['freqs'].items(), key=operator.itemgetter(1), reverse=True)
 }
 
-data_storage_obj['init'](sys.argv[1])
+data_storage_obj['init']('../pride-and-prejudice.txt')
 stop_words_obj['init']()
 
 for w in data_storage_obj['words']():
@@ -46,4 +46,4 @@ for w in data_storage_obj['words']():
 
 word_freqs = word_freqs_obj['sorted']()
 for (w, c) in word_freqs[0:25]:
-    print w, ' - ', c
+    print (w, ' - ', c)

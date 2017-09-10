@@ -29,11 +29,11 @@ def wf_print(wordfreq):
         return
     else:
         (w, c) = wordfreq[0]
-        print w, '-', c
+        print (w, '-', c)
         wf_print(wordfreq[1:])
 
 stop_words = set(open('../stop_words.txt').read().split(','))
-words = re.findall('[a-z]{2,}', open(sys.argv[1]).read().lower())
+words = re.findall('[a-z]{2,}', open('../pride-and-prejudice.txt').read().lower())
 word_freqs = {}
 # Theoretically, we would just call count(words, word_freqs)
 # Try doing that and see what happens.

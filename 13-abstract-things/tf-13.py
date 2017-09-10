@@ -4,28 +4,19 @@ import abc, sys, re, operator, string
 #
 # The abstract things
 #
-class IDataStorage (object):
-    """ Models the contents of the file """
-    __metaclass__ = abc.ABCMeta
-
+class IDataStorage (object, metaclass = abc.ABCMeta):
     @abc.abstractmethod
     def words(self):
         """ Returns the words in storage """
         pass
 
-class IStopWordFilter (object):
-    """ Models the stop word filter """
-    __metaclass__ = abc.ABCMeta
-
+class IStopWordFilter (object, metaclass = abc.ABCMeta):
     @abc.abstractmethod
     def is_stop_word(self, word):
         """ Checks whether the given word is a stop word """
         pass
 
-class IWordFrequencyCounter(object):
-    """ Keeps the word frequency data """
-    __metaclass__ = abc.ABCMeta
-
+class IWordFrequencyCounter(object, metaclass = abc.ABCMeta):
     @abc.abstractmethod
     def increment_count(self, word):
         """ Increments the count for the given word """
@@ -71,7 +62,7 @@ class WordFrequencyManager:
             self._word_freqs[word] = 1
 
     def sorted(self):
-        return sorted(self._word_freqs.iteritems(), key=operator.itemgetter(1), reverse=True)
+        return sorted(self._word_freqs.items(), key=operator.itemgetter(1), reverse=True)
 
 
 #
@@ -97,9 +88,9 @@ class WordFrequencyController:
 
         word_freqs = self._word_freq_counter.sorted()
         for (w, c) in word_freqs[0:25]:
-            print w, ' - ', c
+            print (w, ' - ', c)
 
 #
 # The main function
 #
-WordFrequencyController(sys.argv[1]).run()
+WordFrequencyController('../pride-and-prejudice.txt').run()

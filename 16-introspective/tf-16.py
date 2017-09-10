@@ -34,12 +34,12 @@ def frequencies(word_list):
 
 def sort(word_freq):
     # Meta-level data: locals()
-    return sorted(locals()['word_freq'].iteritems(), key=operator.itemgetter(1), reverse=True)
+    return sorted(locals()['word_freq'].items(), key=operator.itemgetter(1), reverse=True)
 
 def main():
-    word_freqs = sort(frequencies(extract_words(sys.argv[1])))
+    word_freqs = sort(frequencies(extract_words('../pride-and-prejudice.txt')))
     for (w, c) in word_freqs[0:25]:
-        print w, ' - ', c
+        print (w, ' - ', c)
 
 if __name__ == "__main__":
     main()

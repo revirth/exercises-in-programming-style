@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-import re, sys, operator, Queue, threading
+import re, sys, operator, queue, threading
 
 # Two data spaces
-word_space = Queue.Queue()
-freq_space = Queue.Queue()
+word_space = queue.Queue()
+freq_space = queue.Queue()
 
 stopwords = set(open('../stop_words.txt').read().split(','))
 
@@ -14,7 +14,7 @@ def process_words():
     while True:
         try:
             word = word_space.get(timeout=1)
-        except Queue.Empty:
+        except queue.Empty:
             break
         if not word in stopwords:
             if word in word_freqs:
@@ -24,7 +24,7 @@ def process_words():
     freq_space.put(word_freqs)
 
 # Let's have this thread populate the word space
-for word in re.findall('[a-z]{2,}', open(sys.argv[1]).read().lower()):
+for word in re.findall('[a-z]{2,}', open('../pride-and-prejudice.txt').read().lower()):
     word_space.put(word)
 
 # Let's create the workers and launch them at their jobs
@@ -41,12 +41,12 @@ for i in range(5):
 word_freqs = {}
 while not freq_space.empty():
     freqs = freq_space.get()
-    for (k, v) in freqs.iteritems():
+    for (k, v) in freqs.items():
         if k in word_freqs:
             count = sum(item[k] for item in [freqs, word_freqs])
         else:
             count = freqs[k]
         word_freqs[k] = count
         
-for (w, c) in sorted(word_freqs.iteritems(), key=operator.itemgetter(1), reverse=True)[:25]:
-    print w, '-', c
+for (w, c) in sorted(word_freqs.items(), key=operator.itemgetter(1), reverse=True)[:25]:
+    print (w, '-', c)

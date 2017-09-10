@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 
-import sys, re, operator, string
+import sys, re, operator, string, queue
 from threading import Thread
-from Queue import Queue
 
 class ActiveWFObject(Thread):
     def __init__(self):
         Thread.__init__(self)
         self.name = str(type(self))
-        self.queue = Queue()
+        self.queue = queue.Queue()
         self._stop = False
         self.start()
 
@@ -94,7 +93,7 @@ class WordFrequencyManager(ActiveWFObject):
 
     def _top25(self, message):
         recipient = message[0]
-        freqs_sorted = sorted(self._word_freqs.iteritems(), key=operator.itemgetter(1), reverse=True)
+        freqs_sorted = sorted(self._word_freqs.items(), key=operator.itemgetter(1), reverse=True)
         send(recipient, ['top25', freqs_sorted])
 
 class WordFrequencyController(ActiveWFObject):
@@ -114,7 +113,7 @@ class WordFrequencyController(ActiveWFObject):
     def _display(self, message):
         word_freqs = message[0]
         for (w, f) in word_freqs[0:25]:
-            print w, ' - ', f
+            print (w, ' - ', f)
         send(self._storage_manager, ['die'])
         self._stop = True
 
@@ -127,7 +126,7 @@ stop_word_manager = StopWordManager()
 send(stop_word_manager, ['init', word_freq_manager])
 
 storage_manager = DataStorageManager()
-send(storage_manager, ['init', sys.argv[1], stop_word_manager])
+send(storage_manager, ['init', '../pride-and-prejudice.txt', stop_word_manager])
 
 wfcontroller = WordFrequencyController()
 send(wfcontroller, ['run', storage_manager])

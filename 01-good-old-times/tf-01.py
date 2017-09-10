@@ -46,7 +46,7 @@ data.append(0)     # data[7] is frequency
 # Open the secondary memory
 word_freqs = touchopen('word_freqs', 'rb+')
 # Open the input file
-f = open(sys.argv[1])
+f = open('../pride-and-prejudice.txt')
 # Loop over input file's lines
 while True:
     data[1] = [f.readline()] 
@@ -121,6 +121,6 @@ while True:
             
 for tf in data[0:25]: # elimination of symbol tf is exercise
     if len(tf) == 2:
-        print tf[0], ' - ', tf[1]
+        print (tf[0], ' - ', tf[1])
 # We're done
 word_freqs.close()

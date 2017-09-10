@@ -13,7 +13,7 @@ class TFTheOne:
         return self
 
     def printme(self):
-        print self._value
+        print (self._value)
 
 #
 # The functions
@@ -50,7 +50,7 @@ def frequencies(word_list):
     return word_freqs
 
 def sort(word_freq):
-    return sorted(word_freq.iteritems(), key=operator.itemgetter(1), reverse=True)
+    return sorted(word_freq.items(), key=operator.itemgetter(1), reverse=True)
 
 def top25_freqs(word_freqs):
     top25 = ""
@@ -61,7 +61,7 @@ def top25_freqs(word_freqs):
 #
 # The main function
 #
-TFTheOne(sys.argv[1])\
+TFTheOne('../pride-and-prejudice.txt')\
 .bind(read_file)\
 .bind(filter_chars)\
 .bind(normalize)\

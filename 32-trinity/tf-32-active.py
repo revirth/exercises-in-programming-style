@@ -14,7 +14,7 @@ class FreqObserver(threading.Thread):
         self.daemon,self._end = True, False
         # freqs is the part of the model to be observed
         self._freqs = freqs
-        self._freqs_0 = sorted(self._freqs.iteritems(), key=operator.itemgetter(1), reverse=True)[:25]
+        self._freqs_0 = sorted(self._freqs.items(), key=operator.itemgetter(1), reverse=True)[:25]
         self.start()
 
     def run(self):
@@ -28,7 +28,7 @@ class FreqObserver(threading.Thread):
 
     def _update_view(self):
         lock.acquire()
-        freqs_1 = sorted(self._freqs.iteritems(), key=operator.itemgetter(1), reverse=True)[:25]
+        freqs_1 = sorted(self._freqs.items(), key=operator.itemgetter(1), reverse=True)[:25]
         lock.release()
         if (freqs_1 != self._freqs_0):
             self._update_display(freqs_1)
@@ -38,7 +38,7 @@ class FreqObserver(threading.Thread):
         def refresh_screen(data):
             # clear screen
             cls()
-            print data
+            print (data)
             sys.stdout.flush()
 
         data_str = ""
@@ -66,11 +66,11 @@ class WordsCounter:
 #
 # The controller
 #
-print "Press space bar to fetch words from the file one by one"
-print "Press ESC to switch to automatic mode"
+print ("Press space bar to fetch words from the file one by one")
+print ("Press ESC to switch to automatic mode")
 model = WordsCounter()
 view = FreqObserver(model.freqs)
-with open(sys.argv[1]) as f:
+with open('../pride-and-prejudice.txt') as f:
     while get_input():
         try:
             model.count()

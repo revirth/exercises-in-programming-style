@@ -18,16 +18,16 @@ def frequencies_imp(word_list):
 #
 # Let's write our functions as strings.
 #
-if len(sys.argv) > 1:
-    extract_words_func = "lambda name : [x.lower() for x in re.split('[^a-zA-Z]+', open(name).read()) if len(x) > 0 and x.lower() not in stops]"
-    frequencies_func = "lambda wl : frequencies_imp(wl)"
-    sort_func = "lambda word_freq: sorted(word_freq.iteritems(), key=operator.itemgetter(1), reverse=True)"
-    filename = sys.argv[1]
-else:
-    extract_words_func = "lambda x: []"
-    frequencies_func = "lambda x: []"
-    sort_func = "lambda x: []"
-    filename = os.path.basename(__file__)
+# if len(sys.argv) > 1:
+extract_words_func = "lambda name : [x.lower() for x in re.split('[^a-zA-Z]+', open(name).read()) if len(x) > 0 and x.lower() not in stops]"
+frequencies_func = "lambda wl : frequencies_imp(wl)"
+sort_func = "lambda word_freq: sorted(word_freq.items(), key=operator.itemgetter(1), reverse=True)"
+filename = '../pride-and-prejudice.txt'
+# else:
+#     extract_words_func = "lambda x: []"
+#     frequencies_func = "lambda x: []"
+#     sort_func = "lambda x: []"
+#     filename = os.path.basename(__file__)
 #
 # So far, this program isn't much about term-frequency. It's about
 # a bunch of strings that look like functions.
@@ -44,5 +44,5 @@ exec('sort = ' + sort_func)
 word_freqs = locals()['sort'](locals()['frequencies'](locals()['extract_words'](filename)))
 
 for (w, c) in word_freqs[0:25]:
-    print w, ' - ', c
+    print (w, ' - ', c)
 

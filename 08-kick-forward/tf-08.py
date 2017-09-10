@@ -36,11 +36,11 @@ def frequencies(word_list, func):
     func(wf, print_text)
 
 def sort(wf, func):
-    func(sorted(wf.iteritems(), key=operator.itemgetter(1), reverse=True), no_op)
+    func(sorted(wf.items(), key=operator.itemgetter(1), reverse=True), no_op)
 
 def print_text(word_freqs, func):
     for (w, c) in word_freqs[0:25]:
-        print w, "-", c
+        print (w, "-", c)
     func(None)
 
 def no_op(func):
@@ -49,4 +49,4 @@ def no_op(func):
 #
 # The main function
 #
-read_file(sys.argv[1], filter_chars)
+read_file('../pride-and-prejudice.txt', filter_chars)

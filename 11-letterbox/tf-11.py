@@ -63,7 +63,7 @@ class WordFrequencyManager():
             self._word_freqs[word] = 1
 
     def _sorted(self):
-        return sorted(self._word_freqs.iteritems(), key=operator.itemgetter(1), reverse=True)
+        return sorted(self._word_freqs.items(), key=operator.itemgetter(1), reverse=True)
 
 class WordFrequencyController():
 
@@ -89,12 +89,12 @@ class WordFrequencyController():
 
         word_freqs = self._word_freq_manager.dispatch(['sorted'])
         for (w, c) in word_freqs[0:25]:
-            print w, ' - ', c
+            print (w, ' - ', c)
 
 #
 # The main function
 #
 wfcontroller = WordFrequencyController()
-wfcontroller.dispatch(['init', sys.argv[1]])
+wfcontroller.dispatch(['init', '../pride-and-prejudice.txt'])
 wfcontroller.dispatch(['run'])
 

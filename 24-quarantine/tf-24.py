@@ -19,14 +19,14 @@ class TFQuarantine:
         value = lambda : None
         for func in self._funcs:
             value = func(guard_callable(value))
-        print guard_callable(value)
+        print (guard_callable(value))
 
 #
 # The functions
 #
 def get_input(arg):
     def _f():
-        return sys.argv[1]
+        return '../pride-and-prejudice.txt'
     return _f
 
 def extract_words(path_to_file):
@@ -57,7 +57,7 @@ def frequencies(word_list):
     return word_freqs
 
 def sort(word_freq):
-    return sorted(word_freq.iteritems(), key=operator.itemgetter(1), reverse=True)
+    return sorted(word_freq.items(), key=operator.itemgetter(1), reverse=True)
 
 def top25_freqs(word_freqs):
     top25 = ""

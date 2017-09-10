@@ -57,7 +57,7 @@ def load_file_into_database(path_to_file, connection):
 if not os.path.isfile('tf.db'):
     with sqlite3.connect('tf.db') as connection:
         create_db_schema(connection)
-        load_file_into_database(sys.argv[1], connection)
+        load_file_into_database('../pride-and-prejudice.txt', connection)
 
 # Now, let's query
 with sqlite3.connect('tf.db') as connection:
@@ -66,4 +66,4 @@ with sqlite3.connect('tf.db') as connection:
     for i in range(25):
         row = c.fetchone()
         if row != None:
-            print row[0] + ' - '  + str(row[1])
+            print (row[0] + ' - '  + str(row[1]))
